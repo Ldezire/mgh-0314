@@ -1,0 +1,145 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-hover: var(--accent-hover);
+  --color-gold: var(--gold);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+:root {
+  --radius: 0.25rem;
+  --background: #f7f4ee;
+  --foreground: #1a1c19;
+  --card: #ffffff;
+  --card-foreground: #1a1c19;
+  --popover: #ffffff;
+  --popover-foreground: #1a1c19;
+  --primary: #1f4436;
+  --primary-foreground: #f7f4ee;
+  --secondary: #e7ede7;
+  --secondary-foreground: #1f4436;
+  --muted: #eee9df;
+  --muted-foreground: #5e635c;
+  --accent: #e7ede7;
+  --accent-foreground: #1f4436;
+  --accent-soft: #e7ede7;
+  --accent-hover: #163227;
+  --gold: #a8823c;
+  --destructive: #8c2f22;
+  --border: #dfd9cd;
+  --input: #dfd9cd;
+  --ring: #1f4436;
+  /* Fraunces and Karla carry no Malayalam glyphs — the Noto faces pick those
+     up per-glyph, so Latin numerals and brand names stay in the display face. */
+  --font-display: "Fraunces", "Noto Serif Malayalam", ui-serif, Georgia, serif;
+  --font-body: "Karla", "Noto Sans Malayalam", ui-sans-serif, system-ui, sans-serif;
+}
+
+.dark {
+  /* This site is light only. */
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    font-family: var(--font-body);
+    font-synthesis-weight: none;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  blockquote {
+    font-family: var(--font-display);
+    font-variation-settings: "SOFT" 0, "WONK" 0;
+    letter-spacing: -0.015em;
+  }
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  /* Malayalam stacks taller glyphs and needs the breathing room; tight
+     tracking also muddies its conjuncts, so it is reset for this script. */
+  html[lang="ml"] body {
+    line-height: 1.75;
+  }
+  html[lang="ml"] h1,
+  html[lang="ml"] h2,
+  html[lang="ml"] h3,
+  html[lang="ml"] blockquote {
+    letter-spacing: 0;
+    line-height: 1.45;
+  }
+  html[lang="ml"] .eyebrow {
+    letter-spacing: 0.08em;
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+@utility shell {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 2.5rem);
+}
